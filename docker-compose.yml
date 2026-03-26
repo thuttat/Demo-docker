@@ -1,23 +1,38 @@
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: springcode-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: anhthu
-      MYSQL_DATABASE: springcode
-      MYSQL_USER: springcode_user
-      MYSQL_PASSWORD: anhthu
-    ports: 
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-panhthu"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
+# services:
+#   mysql:
+#     image: mysql:8.0
+#     container_name: springcode-mysql
+#     restart: unless-stopped
+#     environment:
+#       MYSQL_ROOT_PASSWORD: anhthu
+#       MYSQL_DATABASE: springcode
+#       MYSQL_USER: springcode_user
+#       MYSQL_PASSWORD: anhthu
+#     ports: 
+#       - "3307:3306"
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+#     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-panhthu"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
 
+# volumes:
+#   mysql_data:
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root
 volumes:
-  mysql_data:
+  jenkins_home:
+
+#a7efb585b8f24fcbae8682aba42e3b3e
