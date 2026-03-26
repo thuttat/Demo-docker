@@ -5,6 +5,11 @@ pipeline {
         }
     }
     stages{
+        stage('Checkout'){
+            steps{
+                git 'https://github.com/thuttat/Demo-docker.git'
+            }
+        }
         stage('Install'){
             steps{
                 sh 'npm install'
