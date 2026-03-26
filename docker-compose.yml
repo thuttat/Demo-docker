@@ -34,5 +34,3 @@ services:
     user: root
 volumes:
   jenkins_home:
-
-#a7efb585b8f24fcbae8682aba42e3b3e
